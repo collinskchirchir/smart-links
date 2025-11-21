@@ -20,6 +20,8 @@ export const linkClicks = sqliteTable("link_clicks", {
 	longitude: real(),
 },
 (table) => [
+	index("idx_link_clicks_account_id").on(table.accountId),
+	index("idx_link_clicks_clicked_time").on(table.clickedTime),
 	index("idx_link_clicks_id").on(table.id),
 ]);
 
