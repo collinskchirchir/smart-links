@@ -13,5 +13,15 @@
   },
   "observability": {
     "enabled": true
-  }
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "smart-links-stage",
+      "database_id": "10bcedee-6d37-4083-b681-25edb3e4c1bd"
+      // "experimental_remote": true is deprecated in Wrangler 4.x+
+      // Remote D1 access is now the default when database_id is specified
+      // Use --local flag for local development: wrangler dev --local
+    }
+  ]
 }
