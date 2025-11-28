@@ -10,7 +10,7 @@ import {
     ACTIVE_LINKS_LAST_HOUR,
     LAST_30_DAYS_BY_COUNTRY,
 } from "./dummy-data";
-import {createLink, getLinks, getLink } from "@repo/data-ops/queries/link-queries";
+import {createLink, getLinks, getLink, updateLinkDestinations } from "@repo/data-ops/queries/link-queries";
 
 export const linksTrpcRoutes = t.router({
     linkList: t.procedure
@@ -59,7 +59,7 @@ export const linksTrpcRoutes = t.router({
             }),
         )
         .mutation(async ({input}) => {
-            console.log(input.linkId, input.destinations);
+            await updateLinkDestinations(input.linkId, input.destinations);
         }),
     activeLinks: t.procedure.query(async () => {
         return ACTIVE_LINKS_LAST_HOUR;
