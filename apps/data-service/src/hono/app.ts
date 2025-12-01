@@ -1,16 +1,10 @@
-import { Hono } from 'hono'
+import {Hono} from 'hono'
+import {getLink} from '@repo/data-ops/queries/link-queries'
 
-export const App = new Hono<{Bindings: Env}>();
+export const App = new Hono<{ Bindings: Env }>();
 
 App.get('/:id', async (c) => {
-	const cf = c.req.raw.cf
-	const country = cf?.country
-	const lat = cf?.latitude
-	const long = cf?.longitude
-	const {} = c.req.param('id')
-	return c.json({
-		country,
-		lat,
-		long
-	})
+	const id = c.req.param('id')
+	const linkInfoFromDb = await getLink(id)
+	return c.json(linkInfoFromDb)
 })
